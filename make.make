@@ -1,3 +1,3 @@
-OUTPUT_ROOT := release/
+OUTPUT_ROOT := release
 
-CC := g++ 
+CC := g++ --std=c++11

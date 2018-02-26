@@ -1,33 +1,30 @@
 include make.make
 
-NAME := trietree 
+DIRS = src
+TESTDIRS = gtest
+BUILDDIRS = $(DIRS:%=build-%)
+CLEANDIRS = $(DIRS:%=clean-%) $(TESTDIRS:%=clean-%)
 
-EXECUTABLE := $(OUTPUT_ROOT)/$(NAME)
 
-LDFLAGS := -lpthread -lgtest -lgtest_main -L/opt/gmock-1.6.0/gtest/lib/
+all: $(BUILDDIRS)
+$(DIRS): $(BUILDDIRS)
+$(BUILDDIRS):
+	$(MAKE) -C $(@:build-%=%)
 
-INCLUDE := -I/opt/gmock-1.6.0/gtest/include/
+test: $(BUILDDIRS) $(TESTDIRS)
+$(BUILDDIRS):
+	$(MAKE) -C $(@:build-%=%)
+$(TESTDIRS): 
+	$(MAKE) -C $(@:test-%=%)
+	$(MAKE) -C $(@:test-%=%) test
 
-CFLAGS := -c -Wall
+clean: $(CLEANDIRS)
+$(CLEANDIRS): 
+	$(MAKE) -C $(@:clean-%=%) clean
 
-SRCS := src/Trie.cc
 
-OBJECTS := $(SRCS:.cc=.o)
-
-all: $(OB_DIR) $(SRCS) $(EXECUTABLE)
-
-$(EXECUTABLE): $(OBJECTS) 
-	mkdir -p $(OUTPUT_ROOT)
-	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
-
-.cc.o: 
-	$(CC) $(CFLAGS) $(INCLUDE) $< -o $@
-
-clean:
-	rm -rf $(OBJECTS) $(EXECUTABLE)
-
-test:
-	$(EXECUTABLE)
-
-install:
-	echo "install?"
+.PHONY: subdirs $(DIRS)
+.PHONY: subdirs $(BUILDDIRS)
+.PHONY: subdirs $(TESTDIRS)
+.PHONY: subdirs $(CLEANDIRS)
+.PHONY: all clean test
