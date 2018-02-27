@@ -4,9 +4,9 @@ NAME := gtest
 
 EXECUTABLE := gtest
 
-LDFLAGS := -lpthread -lgtest -lgtest_main -L/opt/gmock-1.6.0/gtest/lib/ -ltrietree -L../release/
+LDFLAGS := -lpthread -lgtest -lgtest_main -L$(GTEST_PATH)/lib/ -ltrietree -L../release/
 
-INCLUDE := -I/opt/gmock-1.6.0/gtest/include/ -I../src/
+INCLUDE := -I$(GTEST_PATH)/include/ -I../src/
 
 CFLAGS := -c -Wall
 
@@ -25,7 +25,7 @@ $(EXECUTABLE): $(OBJECTS)
 clean:
 	rm -rf $(OBJECTS) $(EXECUTABLE)
 
-test:
-	$(EXECUTABLE)
+test: $(EXECUTABLE)
+	./run_test.sh
 
 
