@@ -15,13 +15,13 @@ Execute google unit test.
 
 ### Initialise
 In this example we initialise TrieTree::Trie with template <T = std::string>
-```bash
+```c++
 TrieTree::Trie<std::string>* trie = new TrieTree::Trie<std::string>();
 ```
 
 ### Insert elements
 Insert several number prefix as keys, country name as values into the trie container.
-```bash
+```c++
 trie->insert("60", "Malaysia");
 trie->insert("603", "Kuala Lumpur");
 trie->insert("6012", "Maxis Mobile");
@@ -33,7 +33,7 @@ trie->insert("123", "Free");
 
 ### Examine the trie tree
 We can examine the trie tree data structure by calling print().
-```bash
+```c++
 trie->print();
 ```
 The entire tree including each nodes will be output into std::cout 
@@ -57,7 +57,7 @@ The entire tree including each nodes will be output into std::cout
 
 ### Query
 Finally we can perform best-match looking by calling get() with a full number.
-```bash
+```c++
 std::cout << trie->get("60122250110") << std::endl;
 std::cout << trie->get("60377811234") << std::endl;
 std::cout << trie->get("65334556123") << std::endl;
