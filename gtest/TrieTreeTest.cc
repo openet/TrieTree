@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
 #include <memory>
-#include "../src/Trie.h"
+#include "Trie.h"
 
 using namespace TrieTree;
 
@@ -28,8 +28,8 @@ TEST_F(TrieTreeTest, SimpleTest)
 
     trie->print();
 
-    std::cout << trie->get("60122250110") << std::endl;  
-    std::cout << trie->get("60377811234") << std::endl; 
-    std::cout << trie->get("65334556123") << std::endl; 
-    std::cout << trie->get("1300882525")  << std::endl; 
+    EXPECT_EQ(trie->get("60122250110"), "Maxis Mobile");
+    EXPECT_EQ(trie->get("60377811234"), "Kuala Lumpur");
+    EXPECT_EQ(trie->get("65334556123"), "Singapore");
+    EXPECT_EQ(trie->get("1300882525"), "Hotline");
 }

@@ -1,13 +1,14 @@
 ## Building
 Compile the project. 
 ```bash
+cmake .
 make
 ```
 
 ## Unit Test
 Execute google unit test.
 ```bash
-make test
+./gtest/runUnitTests
 ```
 
 ## Usage
