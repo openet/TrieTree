@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
 #include <memory>
-#include "Trie.h"
+#include "../src/Trie.h"
 
 using namespace TrieTree;
 
